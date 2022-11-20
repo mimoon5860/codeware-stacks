@@ -21,10 +21,6 @@ const finalCountdown = (nums: number[]) => {
         }
     }
 
-    console.log([1, currentCount.reverse()])
+    return [1, currentCount.reverse()];
 }
-finalCountdown([2, 3, 11, 8, 1, 4, 3]);
-// console.log([2, 3, 11, 8, 3].sort((a, b) => {
-//     return a - b;
-// }))
-
+console.log(finalCountdown([2, 3, 11, 8, 1, 4, 3]))
