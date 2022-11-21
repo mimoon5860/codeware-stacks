@@ -1,25 +1,27 @@
 "use strict";
 // counter sequence function
 const finalCountdown = (nums) => {
-    let count = 0;
-    let sortNums = nums.sort((a, b) => {
-        return a - b;
-    });
     const finalCount = [];
     let currentCount = [];
-    for (let i = 0; i < sortNums.length + finalCount.length; i++) {
-        if (currentCount.length < 1) {
-            currentCount.push(sortNums[i]);
+    for (let i = 0; i < nums.length; i++) {
+        if (i === 0) {
+            currentCount.push(nums[i]);
         }
-        for (let j = 0; j < currentCount.length; j++) {
-            if (currentCount[j] === sortNums[i] - 1) {
-                if (!currentCount.includes(sortNums[i])) {
-                    currentCount.push(sortNums[i]);
-                    // sortNums = sortNums.splice(i, i - 1);
-                }
-            }
+        if (currentCount[currentCount.length - 1] - 1 === nums[i]) {
+            currentCount.push(nums[i]);
+        }
+        else if (currentCount.length) {
+            currentCount = [nums[i]];
+            finalCount.push(currentCount);
         }
     }
-    return [1, currentCount.reverse()];
+    const finalRes = [];
+    for (let i = 0; i < finalCount.length; i++) {
+        if (finalCount[i].length > 1) {
+            finalRes.push(finalCount[i]);
+        }
+    }
+    return [finalRes.length, finalRes];
 };
-console.log(finalCountdown([2, 3, 11, 8, 1, 4, 3]));
+const result = finalCountdown([4, 4, 5, 4, 3, 2, 1, 8, 3, 2, 1]);
+console.log(result);
